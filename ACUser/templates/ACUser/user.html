@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+user
+{% if user %}
+    {{ user.user_name }}
+    {{ user.password }}
+{% endif %}
+<br/>
+本梯子用ShadowSocks搭建，需要在您的电脑上作一定的配制。
+<br/>
+windows配制方法：
+<br/>
+1. <a href="{% url 'ACUser:downloadSS' 'win10' %}">下载ShadowSocks。</a>
+<br/>
+linux配制方法：
+<br/>
+1. <a href="{% url 'ACUser:downloadSS' 'linux' %}">下载ShadowSocks。</a>
+</body>
+</html>
