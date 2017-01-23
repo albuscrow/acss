@@ -134,3 +134,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.gitignore
+ACSS/
+ACUser/
+db.sqlite3
+manage.py
