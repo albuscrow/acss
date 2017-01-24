@@ -5,10 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-user
+hello
 {% if user %}
     {{ user.user_name }}
-    {{ user.password }}
+    your expired date is: {{ user.expired_date }}
 {% endif %}
 <br/>
 本梯子用ShadowSocks搭建，需要在您的电脑上作一定的配制。
@@ -20,5 +20,8 @@ windows配制方法：
 linux配制方法：
 <br/>
 1. <a href="{% url 'ACUser:downloadSS' 'linux' %}">下载ShadowSocks。</a>
+<br/>
+<br/>
+<a href="{% url 'ACUser:renew' 60 %}">view ad</a>
 </body>
 </html>

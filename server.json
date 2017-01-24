@@ -1,0 +1,11 @@
+{
+  "server": "0.0.0.0",
+  "fast_open": true,
+  "method": "chacha20",
+  "timeout": 60,
+  "mode": "tcp_and_udp",
+  "ipv6_first": true,
+  "port_password": {
+    "56719": "123456"
+  }
+}

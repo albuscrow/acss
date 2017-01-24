@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from .models import User
 from django.utils import timezone
+from datetime import timedelta, datetime
+import ACUser.ss.ss_manager as SSM
 import re
 import os
 
@@ -39,7 +41,6 @@ def register(user_name: str, password: str) -> (str, User):
         u.user_name = user_name
         u.password = password
         u.expired_date = timezone.now()
-        print(u.port)
         u.save()
         return None, u
 
@@ -62,7 +63,7 @@ def do_login_or_register(request: HttpRequest) -> HttpResponse:
 
 def user_detail(request) -> HttpResponse:
     return render(request, 'ACUser/user.html', {
-        'user': User.objects.get(id=request.session['userid'])})
+        'user': User.objects.get(pk=request.session['userid'])})
 
 
 def download_ss(request, platform):
@@ -77,3 +78,13 @@ def ss_win10():
         response = HttpResponse(of, content_type='application/zip')
         response['Content-Disposition'] = 'attachment; filename=ss_win10.zip'
         return response
+
+
+def renew(request, minutes):
+    user = User.objects.get(pk=request.session['userid'])
+    user.renew(timedelta(minutes=int(minutes)))
+    SSM.update_ss_config_file()
+    return render(request, 'ACUser/user.html', {
+        'user': User.objects.get(pk=request.session['userid'])})
+
+

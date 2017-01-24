@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import timedelta, datetime
 import socket
 
 
@@ -7,7 +8,7 @@ class User(models.Model):
     user_name = models.CharField(max_length=64)
     port = models.IntegerField()
     password = models.CharField(max_length=64)
-    expired_date = models.DateTimeField()
+    expired_date = models.DateTimeField()  # type: datetime
 
     @staticmethod
     def get_available_port():
@@ -26,6 +27,12 @@ class User(models.Model):
 
     def is_expired(self):
         return timezone.now() > self.expired_date
+
+    def renew(self, time: timedelta):
+        if self.expired_date < timezone.now():
+            self.expired_date = timezone.now()
+        self.expired_date += time
+        self.save()
 
     is_expired.admin_order_field = 'expired_date'
     is_expired.boolean = True
