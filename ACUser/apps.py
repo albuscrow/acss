@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from .ss.ss_manager import start_ss
+from ACUser.ss.ss_manager import start_ss
 
 
 class ACUserConfig(AppConfig):
