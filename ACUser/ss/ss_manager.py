@@ -6,7 +6,7 @@ from subprocess import call
 
 ss_config_file_path = '/etc/shadowsocks/server_test.json'
 
-ss_command_temple = 'systemctl %s shadowsocks@server_test.json'
+ss_command_temple = 'systemctl %s shadowsocks-libev-server@server_test.json'
 restart_ss_command = ss_command_temple % 'restart'
 start_ss_command = ss_command_temple % 'start'
 
