@@ -8,6 +8,9 @@
 hello
 {% if user %}
     {{ user.user_name }}
+    <br/>
+    your port is: {{ user.port }}
+    <br/>
     your expired date is: {{ user.expired_date }}
 {% endif %}
 <br/>
