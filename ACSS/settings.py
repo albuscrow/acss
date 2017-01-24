@@ -25,7 +25,7 @@ SECRET_KEY = 'zb$72))$)rgs3112y=f%ej)+d&y1hr-#5_e9r11t@*o!uele#+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['albuscrow.space:8000']
+ALLOWED_HOSTS = ['albuscrow.space']
 
 
 # Application definition
