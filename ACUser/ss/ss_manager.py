@@ -12,11 +12,11 @@ start_ss_command = ss_command_temple % 'start'
 
 
 def restart_ss():
-    call(restart_ss_command)
+    call(restart_ss_command.split())
 
 
 def start_ss():
-    call(start_ss_command)
+    call(start_ss_command.split())
 
 
 def update_ss_config_file():
