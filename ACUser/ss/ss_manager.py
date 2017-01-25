@@ -21,10 +21,13 @@ def get_start_command(user):
 
 
 def get_stop_command(user):
-    stop_command_temple = 'kill -9 `cat {0}` && rm {0}'.format(get_pid_file_name(user.user_name))
+    return 'kill -9 `cat {0}` && rm {0}'.format(get_pid_file_name(user.user_name))
 
 
 def run_command(command):
+    with open('log', mode='aw') as of:
+        of.write(command)
+        of.write('\n')
     call(command, shell=True)
 
 
