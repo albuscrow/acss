@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.core.urlresolvers import reverse
 from django.views import generic
@@ -84,7 +84,9 @@ def renew(request, minutes):
     user = User.objects.get(pk=request.session['userid'])
     user.renew(timedelta(minutes=int(minutes)))
     SSM.update_ss_server()
-    return render(request, 'ACUser/user.html', {
-        'user': User.objects.get(pk=request.session['userid'])})
+    return redirect(reverse('ACUser:user'))
 
 
+def stop_all(request):
+    SSM.stop_all_ss_server()
+    return redirect(reverse('ACUser:user'))
