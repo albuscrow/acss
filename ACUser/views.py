@@ -66,20 +66,6 @@ def user_detail(request) -> HttpResponse:
         'user': User.objects.get(pk=request.session['userid'])})
 
 
-def download_ss(request, platform):
-    if platform == 'win10':
-        return ss_win10()
-    else:
-        return ss_win10()
-
-
-def ss_win10():
-    with open('ACUser/res/ss_win.zip', 'rb') as of:
-        response = HttpResponse(of, content_type='application/zip')
-        response['Content-Disposition'] = 'attachment; filename=ss_win10.zip'
-        return response
-
-
 def renew(request, minutes):
     user = User.objects.get(pk=request.session['userid'])
     user.renew(timedelta(minutes=int(minutes)))

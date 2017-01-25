@@ -20,14 +20,13 @@ This 梯子 is based on ShadowSocks， additional config is needed on client.
 <br/>
 Please checkout <a href="https://ttt.tt/150/">this blog</a> to config your client.
 <br/>
-<a href="{% url 'ACUser:downloadSS' 'win10' %}">Windows ShadowSocks client.</a>
+{% load staticfiles %}
+<a href="{% static 'ACUser/ss_win.zip' %}">Windows ShadowSocks client.</a>
 <br/>
 <a href="{% url 'ACUser:renew' 60 %}">view ad</a>
 <br/>
 <a href="{% url 'ACUser:stopAll' %}">stop all</a>
 
-
-{% load staticfiles %}
 <img src="{% static 'ACUser/alipay.jpg' %}">
 </body>
 </html>
