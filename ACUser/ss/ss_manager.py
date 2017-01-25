@@ -9,14 +9,14 @@ def get_pid_file_name(user_name):
 
 def get_start_command(user):
     start_command_temple = 'ss-server -s 0.0.0.0' \
-                           '-m chacha20' \
-                           '--fast-open' \
-                           '-6' \
-                           '-u' \
-                           '-A' \
-                           '-p %d' \
-                           '-k %s' \
-                           '-f %s'
+                           ' -m chacha20' \
+                           ' --fast-open' \
+                           ' -6' \
+                           ' -u' \
+                           ' -A' \
+                           ' -p %d' \
+                           ' -k %s' \
+                           ' -f %s'
     return start_command_temple % (user.port, user.password, get_pid_file_name(user.user_name))
 
 
