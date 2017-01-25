@@ -18,8 +18,11 @@
 
 <form method="post" action="{% url 'ACUser:doLoginOrRegister' %}">
     {% csrf_token %}
+    <label>username: </label>
     <input type="text" name="username"/>
+    <label>password: </label>
     <input type="text" name="password"/>
+    <br/>
     <input type="submit" value="login" name="action"/>
     <input type="submit" value="register" name="action"/>
 </form>

@@ -5,30 +5,29 @@
     <title>Title</title>
 </head>
 <body>
-hello
+hello!
 {% if user %}
     {{ user.user_name }}
     <br/>
     your port is: {{ user.port }}
     <br/>
     your expired date is: {{ user.expired_date }}
+    <br/>
 {% endif %}
+the encrypt method is chacha20
 <br/>
-本梯子用ShadowSocks搭建，需要在您的电脑上作一定的配制。
+This 梯子 is based on ShadowSocks， additional config is needed on client.
 <br/>
-windows配制方法：
+Please checkout <a href="https://ttt.tt/150/">this blog</a> to config your client.
 <br/>
-1. <a href="{% url 'ACUser:downloadSS' 'win10' %}">下载ShadowSocks。</a>
-<br/>
-2. 填写
-<br/>
-linux配制方法：
-<br/>
-1. <a href="{% url 'ACUser:downloadSS' 'linux' %}">下载ShadowSocks。</a>
-<br/>
+<a href="{% url 'ACUser:downloadSS' 'win10' %}">Windows ShadowSocks client.</a>
 <br/>
 <a href="{% url 'ACUser:renew' 60 %}">view ad</a>
 <br/>
 <a href="{% url 'ACUser:stopAll' %}">stop all</a>
+
+
+{% load staticfiles %}
+<img src="{% static 'ACUser/alipay.jpg' %}">
 </body>
 </html>
