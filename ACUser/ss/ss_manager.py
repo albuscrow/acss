@@ -25,7 +25,7 @@ def get_stop_command(user):
 
 
 def run_command(command):
-    with open('log', mode='aw') as of:
+    with open('log', mode='a') as of:
         of.write(command)
         of.write('\n')
     call(command, shell=True)
