@@ -83,7 +83,7 @@ def ss_win10():
 def renew(request, minutes):
     user = User.objects.get(pk=request.session['userid'])
     user.renew(timedelta(minutes=int(minutes)))
-    SSM.update_ss_config_file()
+    SSM.update_ss_server()
     return render(request, 'ACUser/user.html', {
         'user': User.objects.get(pk=request.session['userid'])})
 

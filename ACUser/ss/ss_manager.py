@@ -1,31 +1,36 @@
 from ACUser.models import User
 from django.utils import timezone
-from .ss_configure import SSConfigure
-from json import dumps
 from subprocess import call
 
-ss_config_file_path = '/etc/shadowsocks/server_test.json'
 
-ss_command_temple = \
-    'systemctl %s shadowsocks-libev-server@server_test.service'
-restart_ss_command = ss_command_temple % 'restart'
-start_ss_command = ss_command_temple % 'start'
+def get_pid_file_name(user_name):
+    return './pid/' + str(user_name)
 
 
-def restart_ss():
-    call(restart_ss_command.split())
+def get_start_command(user):
+    start_command_temple = 'ss-server -s 0.0.0.0' \
+                           '-m chacha20' \
+                           '--fast-open' \
+                           '-6' \
+                           '-u' \
+                           '-A' \
+                           '-p %d' \
+                           '-k %s' \
+                           '-f %s'
+    return start_command_temple % (user.port, user.password, get_pid_file_name(user.user_name))
 
 
-def start_ss():
-    call(start_ss_command.split())
+def get_stop_command(user):
+    stop_command_temple = 'kill -9 `cat {0}` && rm {0}'.format(get_pid_file_name(user.user_name))
 
 
-def update_ss_config_file():
-    pps = SSConfigure()
+def run_command(command):
+    call(command, shell=True)
+
+
+def update_ss_server():
     for u in User.objects.filter(expired_date__gt=timezone.now()):
-        pps.add_user(u.port, u.password)
-
-    with open(ss_config_file_path, 'w') as of:
-        of.write(pps.to_json())
-
-    restart_ss()
+        if u.expired_date > timezone.now():
+            run_command(get_start_command(u))
+        else:
+            run_command(get_stop_command(u))
